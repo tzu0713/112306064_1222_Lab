@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #diceContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+
+        #diceContainer img {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+        }
+
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 200px;
+        }
+
+        table th, table td {
+            border: 2px solid #333;
+            padding: 8px;
+            text-align: center;
+            background-color: lightblue;
+        }
+
+      	table tr:first-child th, table tr:first-child td {
+        	background-color: lightyellow;
+    	}
+    </style>
+</head>
+<body>
+
+<form action = "#">
+	<input id = "rollButton" type = "button" value = "Roll Dice">
+</form>
+<div id = "diceContainer">
+	<img id = "die1" src = "die1.png" alt = "blank image">
+	<img id = "die2" src = "die2.png" alt = "blank image">
+	<img id = "die3" src = "die3.png" alt = "blank image">
+	<img id = "die4" src = "die4.png" alt = "blank image">
+	<img id = "die5" src = "die5.png" alt = "blank image">
+	<img id = "die6" src = "die6.png" alt = "blank image">
+	<img id = "die7" src = "die1.png" alt = "blank image">
+	<img id = "die8" src = "die2.png" alt = "blank image">
+	<img id = "die9" src = "die3.png" alt = "blank image">
+	<img id = "die10" src = "die4.png" alt = "blank image">
+	<img id = "die11" src = "die5.png" alt = "blank image">
+	<img id = "die12" src = "die6.png" alt = "blank image">
+</div>
+<table>
+    <tr>
+        <th>Face</th>
+        <th>Percent</th>
+    </tr>
+    <tr id="frequency1">
+        <td>1</td>
+        <td>25.00</td>
+    </tr>
+    <tr id="frequency2">
+        <td>2</td>
+        <td>41.67</td>
+    </tr>
+    <tr id="frequency3">
+        <td>3</td>
+        <td>25.00</td>
+    </tr>
+    <tr id="frequency4">
+        <td>4</td>
+        <td>0.00</td>
+    </tr>
+    <tr id="frequency5">
+        <td>5</td>
+        <td>8.33</td>
+    </tr>
+    <tr id="frequency6">
+        <td>6</td>
+        <td>0.00</td>
+    </tr>
+</table>
+
+<script>
+
+	function start()
+	{
+		var button = document.getElementById( "rollButton" );
+        button.addEventListener( "click", rollDice);
+       
+        die1Image = document.getElementById( "die1" );
+        die2Image = document.getElementById( "die2" );
+        die3Image = document.getElementById( "die3" );
+        die4Image = document.getElementById( "die4" );
+        die5Image = document.getElementById( "die5" );
+        die6Image = document.getElementById( "die6" );
+        die7Image = document.getElementById( "die7" );
+        die8Image = document.getElementById( "die8" );
+        die9Image = document.getElementById( "die9" );
+        die10Image = document.getElementById( "die10" );
+		die11Image = document.getElementById( "die11" );
+        die12Image = document.getElementById( "die12" );
+	} // end function start
+
+	function rollDice()
+	{
+	   	setImage(die1Image);
+		setImage(die2Image);
+		setImage(die3Image);
+		setImage(die4Image);
+		setImage(die5Image);
+		setImage(die6Image);
+		setImage(die7Image);
+		setImage(die8Image);
+		setImage(die9Image);
+		setImage(die10Image);
+		setImage(die11Image);
+		setImage(die12Image);
+	} // end function rollDice
+
+	// set image source for a die
+	function setImage(dieImg)
+	{
+		var dieValue = Math.floor( 1 + Math.random() * 6);
+        dieImg.setAttribute( "src", "die" + dieValue + ".png");
+        dieImg.setAttribute( "alt", "die image with " + dieValue + "spot(s)");
+	} //end function setImage
+
+	window.addEventListener("load", start);
+
+	// update frequency table in the page
+	function updateFrequencyTable()
+	{
+		var frequencyCell = document.getElementById("frequency" + face);
+        var currentFrequency = parseInt(frequencyCell.textContent);
+        frequencyCell.textContent = (currentFrequency + 1) + "%";
+	} // end function updateFrequencyTable
+
+	window.addEventListener("load", start, false);
+
+
+
+</script>
+</body>
+</html>
